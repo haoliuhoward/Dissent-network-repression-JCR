@@ -11,10 +11,10 @@ packs = c('tidyverse',
 loadPkg(packs)
 
 # Load Data 
-load('replication_taiwanTerror/data/modData_dedup_noNA.rda')
+load('data/modData_dedup_noNA.rda')
 
 ## Figure 1: Recruitment Network -----------------------------
-load("replication_taiwanTerror/data/fig1.rda")
+load("data/fig1.rda")
 
 library(visNetwork)
 # panel a
@@ -91,7 +91,6 @@ stats_tab$variable[stats_tab$variable == "inmate"] <- "Inmate"
 stats_tab$variable[stats_tab$variable == "islander"] <- "Islander"
 stats_tab$variable[stats_tab$variable == "SW_leadership"] <- "Closeness to leaders"
 stats_tab$variable[stats_tab$variable == "SW_centrality"] <- "Closeness to recruiters"
-stats_tab
 
 tab = xtable(stats_tab, type = "latex", caption = "Variable Statistics", label = "var_stats")
 print(tab, 
@@ -171,7 +170,7 @@ stargazer(m1.se, m1_yr.se, m2.se, m2_yr.se, m2_rec.se, m2_rec_yr.se,
           covariate.labels = labs_SW,
           label = 'main_death',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Effect of Network Relationships on Severity of Repression',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
@@ -180,12 +179,12 @@ stargazer(m1.se, m1_yr.se, m2.se, m2_yr.se, m2_rec.se, m2_rec_yr.se,
           font.size = "scriptsize",
           intercept.bottom = T, omit = c("sentence_year"),omit.labels = c("sentence_year FE"),
           add.lines = list(
-            c('Observations', 
+            c('Observations',
               nrow(na.omit(modData_dedup_noNA[,c(dv, idvs)])), nrow(na.omit(modData_dedup_noNA[,c(dv, idvs)])),
               nrow(na.omit(modData_dedup_noNA[,c(dv, idvs)])), nrow(na.omit(modData_dedup_noNA[,c(dv, idvs)])),
               nrow(na.omit(modData_dedup_noNA[,c(dv, idvs)])), nrow(na.omit(modData_dedup_noNA[,c(dv, idvs)]))
             )),
-          # out = 'figures/main_death.tex',
+          # out = 'outputs/main_death.tex',
           notes = "Standard errors clustered at the trial case level")
 
 
@@ -246,7 +245,7 @@ stargazer(SW2_leader.se, SW2_leader_yr.se,
           covariate.labels = labs,
           label = 'main_death2',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Conditional Effects of Defection',
           dep.var.labels = "Death Sentence",
           model.numbers = T,

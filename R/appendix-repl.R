@@ -11,7 +11,7 @@ packs = c('tidyverse',
 loadPkg(packs)
 
 # Load Data 
-load('replication_taiwanTerror/data/modData_dedup_noNA.rda')
+load('data/modData_dedup_noNA.rda')
 
 dv = "charge_death"
 idvs = c("leadership", "outDegree","turn_in",
@@ -22,7 +22,7 @@ idvs = c("leadership", "outDegree","turn_in",
 
 
 ### Table A1 A2: confirmed leaders  --------------------------------------------------
-load('replication_taiwanTerror/data/modData_dedup_noNA_leadership.rda') # add in confirmed leadership
+load('data/modData_dedup_noNA_leadership.rda') # add in confirmed leadership
 m1 <- glm(charge_death ~ leadership_conf + outDegree + turn_in + 
             reason_intel + reason_advert + reason_support + reason_part + 
             gender +
@@ -103,7 +103,7 @@ stargazer(m1.se, m1_yr.se,
           covariate.labels = labs_SW,
           label = 'main_robust',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Effect of Network Relationships on Severity of Repression (Confirmed Leadership)',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
@@ -177,7 +177,7 @@ stargazer(SW2_leader.se, SW2_leader_yr.se,
           covariate.labels = labs,
           label = 'main2_robust',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Conditional Effects of Defection (Confirmed Leadership)',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
@@ -199,7 +199,7 @@ rm(basemodel, m1, m1.se, m1_yr, m1_yr.se,
    SW2_rec, SW2_rec_yr, SW2_rec_yr.se, SW2_rec.se)
 
 ### Table A3 A4: including released and then recaptured -----------------------------------------------------------------
-load("replication/data/modData_noNA.rda") # include duplicated observations
+load("data/modData_noNA.rda") # include duplicated observations
 
 m1 <- glm(charge_death ~ leadership + outDegree + turn_in +
             reason_intel + reason_advert + reason_support + reason_part + # 犯罪類型 crime types
@@ -281,7 +281,7 @@ stargazer(m1.se, m1_yr.se, m2.se, m2_yr.se, m2_rec.se, m2_rec_yr.se,
           covariate.labels = labs_SW,
           label = 'main_death_multi',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Effect of Network Relationships on Severity of Repression (Including the Released and Recaptured)',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
@@ -356,12 +356,10 @@ stargazer(SW2_leader.se, SW2_leader_yr.se,
           covariate.labels = labs,
           label = 'main2_death_multi',
           type ="text",
-          include.intercept = F,
-          # style = 'io',
+          # include.intercept = F,
           title = 'The Conditional Effects of Defection (Including the Released and Recaptured)',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
-          # align=T,
           multicolumn = T,
           no.space = T,
           font.size = "scriptsize",
@@ -382,7 +380,7 @@ rm(basemodel, m1, m1.se, m1_yr, m1_yr.se,
 
 
 ### Table A5 A6: including people without the captured/sentenced year  -----------------------------------------------------------------
-load('replication/data/modData.rda')
+load('data/modData.rda')
 m1 <- glm(charge_death ~ leadership + outDegree + turn_in +
             reason_intel + reason_advert + reason_support + reason_part + 
             gender +
@@ -422,7 +420,7 @@ stargazer(m1.se, m2.se, m2_rec.se,
           covariate.labels = labs_SW,
           label = 'main_death_all_noYear',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Effect of Network Relationships on Severity of Repression (Including the Released and Recaptured and No Captured Year)',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
@@ -498,7 +496,7 @@ rm(basemodel, m1, m1.se, m1_yr, m1_yr.se,
    SW2_rec, SW2_rec_yr, SW2_rec_yr.se, SW2_rec.se)
 
 ### Table A7 A8: Including people of Released-and-Recaptured, no years, and no names --------------------------------------------
-load('replication/data/modData_AddnoNames.rda')
+load('data/modData_AddnoNames.rda')
 
 m1 <- glm(charge_death ~ leadership + outDegree + turn_in +
             reason_intel + reason_advert + reason_support + reason_part + 
@@ -705,7 +703,7 @@ stargazer(fit.1.se, fit.1_yr.se, fit.2.se, fit.2_yr.se, fit.2_rec.se, fit.2_rec_
           covariate.labels = labs_SW,
           label = 'main',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           # style = 'io',
           title = 'The Effect of Network Relationships on Severity of Repression (Ordered Logit)',
           dep.var.labels = "Punishment Severity (ordered outcome)",
@@ -781,7 +779,7 @@ stargazer(fit.SW2_leader.se, fit.SW2_leader_yr.se,
           covariate.labels = labs,
           label = 'main2',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Conditional Effects of Defection (Ordered Logit)',
           dep.var.labels = "Punishment Severity (Ordered outcome)",
           model.numbers = T,
@@ -804,7 +802,7 @@ rm(basemodel, fit.1,fit.1.se,fit.1_yr,fit.1_yr.se,fit.2.se, fit.2_yr.se, fit.2_r
    fit.2_rec, fit.2_rec_yr, fit.2_rec.se, fit.2_rec_yr.se)
 
 ## Table A11 A12: spatial and county FE  --------------------------------------------------
-load('replication/data/modData_dedup_noNA_yearCountyFE.rda')
+load('data/modData_dedup_noNA_yearCountyFE.rda')
 
 m1 <- glm(charge_death ~ leadership + outDegree + turn_in +
             reason_intel + reason_advert + reason_support + reason_part + 
@@ -891,8 +889,7 @@ stargazer(m1.se, m1_yr.se, m2.se, m2_yr.se, m2_rec.se, m2_rec_yr.se,
           covariate.labels = labs_SW,
           label = 'main_death_spatialFE',
           type ="text",
-          include.intercept = F,
-          # style = 'io',
+          # include.intercept = F,
           title = 'The Effect of Network Relationships on Severity of Repression',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
@@ -978,7 +975,7 @@ stargazer(SW2_leader.se, SW2_leader_yr.se,
           covariate.labels = labs,
           label = 'main2_death_spatialFE',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Effect of Network Relationships on Severity of Repression',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
@@ -1046,7 +1043,7 @@ stats_tab = brotools::describe(modData_dedup_noNA_complete) %>% dplyr::select(va
 stats_tab[, 2:ncol(stats_tab)] <- stats_tab[, 2:ncol(stats_tab)] %>% lapply(. , round, 2)
 
 # order 
-stats_tab
+
 stats_tab = stats_tab[c(1,6,8,16,
                         10,9,11,12,
                         3,13,2,7,4,14,15), ]
@@ -1160,8 +1157,7 @@ stargazer(m2.se, m2_yr.se, SW2_rec.se, SW2_rec_yr.se,
           covariate.labels = labs_SW,
           label = 'main_defect',
           type ="text",
-          include.intercept = F,
-          # style = 'io',
+          # include.intercept = F,
           title = 'Who Defects',
           dep.var.labels = "Defection",
           model.numbers = T,
@@ -1181,7 +1177,7 @@ stargazer(m2.se, m2_yr.se, SW2_rec.se, SW2_rec_yr.se,
 ## Table A14 A15: survival analysis ----------------------------------------------
 
 # Estimating BTSCS logit model
-load("replication_taiwanTerror/data/modData_expanded.rda")
+load("data/modData_expanded.rda")
 
 fit.1 <- glm(binaryCaptured_i ~ prior_captures +
                leadership + outDegree + turn_in +
@@ -1477,7 +1473,7 @@ stargazer(m1.se, m1_yr.se, m2.se, m2_yr.se, m2_rec.se, m2_rec_yr.se,
           covariate.labels = labs_SW,
           label = 'main_death_wane',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Effect of Network Relationships on Severity of Repression (After 1965)',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
@@ -1555,7 +1551,7 @@ stargazer(SW2_leader.se, SW2_leader_yr.se,
           covariate.labels = labs,
           label = 'main2_death_wane',
           type ="text",
-          include.intercept = F,
+          # include.intercept = F,
           title = 'The Conditional Effects of Defection (After 1965)',
           dep.var.labels = "Death Sentence",
           model.numbers = T,
